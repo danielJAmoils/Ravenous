@@ -35,4 +35,4 @@ class SearchBar extends React.Component {
     }
 }
 
-export default sortByOptions
+export default SearchBar
