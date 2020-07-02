@@ -7,11 +7,15 @@ type SearchBarState = {
     sortBy: string
 }
 
-class SearchBar extends React.Component<{}, SearchBarState> {
+type SearchBarProps = {
+    searchYelp(term: string, location: string, sortBy: string): void
+}
+
+class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     sortByOptions: {  [index: string]: string //allows object to be indexed with strings
         'Best Match': string; 'Highest Rated': string; 'Most Reviewed': string;
     }
-    constructor(props: Readonly<{}>){
+    constructor(props: SearchBarProps){
         super(props)
         this.state = {
             term: '',
@@ -21,6 +25,7 @@ class SearchBar extends React.Component<{}, SearchBarState> {
 
         this.handleTermChange = this.handleTermChange.bind(this)
         this.handleLocationChange = this.handleLocationChange.bind(this)
+        this.handleSearch = this.handleSearch.bind(this)
 
         this.sortByOptions =  {
             'Best Match': 'best_match',
@@ -53,6 +58,11 @@ class SearchBar extends React.Component<{}, SearchBarState> {
         })
     }
 
+    handleSearch(event: any){//need better type
+        this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
+        event.preventDefault()
+    }
+
     renderSortByOptions(){
         return Object.keys(this.sortByOptions).map((sortByOption) => {
             const sortByOptionValue = this.sortByOptions[sortByOption]
@@ -76,7 +86,7 @@ class SearchBar extends React.Component<{}, SearchBarState> {
                     <input placeholder="Where?" onChange={this.handleLocationChange}/>
                 </div>
                 <div className="SearchBar-submit">
-                    <a>Let's Go</a>
+                    <a onClick={this.handleSearch}>Let's Go</a>
                 </div>
             </div>
         )
