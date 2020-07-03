@@ -4,6 +4,7 @@ import Business from '../Business/Business'
 
 type BusinessListProps = {
     businesses: {
+        id: string
         imageSrc: string;
         name: string;
         address: string;
@@ -22,7 +23,7 @@ class BusinessList extends React.Component<BusinessListProps, {}>{
             <div className="BusinessList">
                 {
                 this.props.businesses.map(function(business){
-                    return <Business business={business}/>
+                    return <Business key={business.id} business={business}/>
                 })
                 }
             </div>

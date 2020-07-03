@@ -13,6 +13,7 @@ type BusinessProps = {
         rating: number;
         reviewCount: number;
     }
+    key:String
 }
  class Business extends React.Component<BusinessProps, {}>{
 
