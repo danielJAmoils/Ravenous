@@ -13,3 +13,5 @@ Possible Additions
 -delete create react app files
 
 -add tests
+
+-remove .vscode from git

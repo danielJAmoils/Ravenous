@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 import './SearchBar.css'
 
 type SearchBarState = {
@@ -46,19 +46,19 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
         this.setState({sortBy: sortByOption})
     }
 
-    handleTermChange(event:any){//try to find better type look below it is on change
+    handleTermChange(event:React.ChangeEvent<HTMLInputElement>){
         this.setState({
             term:event.target.value
         })
     }
 
-    handleLocationChange(event:any){//is a change event i don't know why not working
+    handleLocationChange(event:React.ChangeEvent<HTMLInputElement>){//is a change event i don't know why not working
         this.setState({
             location:event.target.value
         })
     }
 
-    handleSearch(event: any){//need better type
+    handleSearch(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>){//need better type
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
         event.preventDefault()
     }
