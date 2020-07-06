@@ -73,6 +73,12 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
         })
     }
 
+    getSnapshotBeforeUpdate(prevProps:SearchBarProps, prevState:SearchBarState){
+        if(prevState.sortBy != this.state.sortBy){
+            this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
+        }
+    }
+
     render(){
         return (
             <div className="SearchBar">
