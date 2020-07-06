@@ -12,8 +12,9 @@ type BusinessProps = {
         category: string;
         rating: number;
         reviewCount: number;
+        url:string
     }
-    key:String
+    key:string
 }
  class Business extends React.Component<BusinessProps, {}>{
 
@@ -21,7 +22,9 @@ type BusinessProps = {
         return (
             <div className="Business">
                 <div className="image-container">
-                    <img src={this.props.business.imageSrc} alt=''/>
+                    <a href={this.props.business.url} rel="noopener noreferrer" target="_blank">
+                        <img src={this.props.business.imageSrc} alt=''/>
+                    </a>
                 </div>
                 <h2>{this.props.business.name}</h2>
                 <div className="Business-information">

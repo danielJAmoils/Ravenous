@@ -52,13 +52,13 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
         })
     }
 
-    handleLocationChange(event:React.ChangeEvent<HTMLInputElement>){//is a change event i don't know why not working
+    handleLocationChange(event:React.ChangeEvent<HTMLInputElement>){
         this.setState({
             location:event.target.value
         })
     }
 
-    handleSearch(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>){//need better type
+    handleSearch(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>){
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
         event.preventDefault()
     }

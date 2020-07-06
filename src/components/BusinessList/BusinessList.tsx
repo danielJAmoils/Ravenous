@@ -14,6 +14,7 @@ type BusinessListProps = {
         category: string;
         rating: number;
         reviewCount: number;
+        url:string
     }[]
 }
 

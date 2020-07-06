@@ -16,7 +16,8 @@ type AppState = {
     category: string;
     rating: number;
     reviewCount: number;
-}[] | undefined//need better type
+    url:string
+}[] | undefined
 }
 
 class App extends React.Component<{}, AppState>{
