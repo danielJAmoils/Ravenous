@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactHTMLElement } from 'react'
 import './SearchBar.css'
 
 type SearchBarState = {
@@ -26,6 +26,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
         this.handleTermChange = this.handleTermChange.bind(this)
         this.handleLocationChange = this.handleLocationChange.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
+        this.handleEnterKey = this.handleEnterKey.bind(this)
 
         this.sortByOptions =  {
             'Best Match': 'best_match',
@@ -76,12 +77,20 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     getSnapshotBeforeUpdate(prevProps:SearchBarProps, prevState:SearchBarState){
         if(prevState.sortBy != this.state.sortBy){
             this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
+            return null
+        }
+        return null
+    }
+
+    handleEnterKey(event:React.KeyboardEvent<HTMLDivElement>){
+        if(event.keyCode === 13){
+            this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy)
         }
     }
 
     render(){
         return (
-            <div className="SearchBar">
+            <div className="SearchBar" onKeyDown={this.handleEnterKey}>
                 <div className="SearchBar-sort-options">
                     <ul>
                         {this.renderSortByOptions()}
